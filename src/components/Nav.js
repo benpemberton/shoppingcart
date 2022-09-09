@@ -11,6 +11,9 @@ export default function Nav() {
         <Link to="/shop">
           <li>Shop</li>
         </Link>
+        <Link to="/about">
+          <li>About</li>
+        </Link>
       </ul>
     </nav>
   );

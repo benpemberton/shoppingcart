@@ -1,7 +1,7 @@
 import Nav from "./components/Nav";
 // import RouteSwitch from "./components/RouteSwitch";
 import "./app.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
 import { useState, useEffect } from "react";
@@ -27,7 +27,6 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
       <div className="App">
         <Nav />
         <Routes>
@@ -38,7 +37,6 @@ function App() {
           />
         </Routes>
       </div>
-    </BrowserRouter>
   );
 }
 
