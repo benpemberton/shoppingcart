@@ -1,9 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
 html {
   box-sizing: border-box;
   font-size: 16px;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -24,16 +28,58 @@ MINE FROM HERE
 
 body {
   overflow-x: hidden;
-  min-width: 550px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Kanit;
+}
+
+button {
+  align-items: center;
+  background-color: #3eb2fd;
+  background-image: linear-gradient(1deg, #4f58fd, #149bf3 99%);
+  background-size: calc(100% + 20px) calc(100% + 20px);
+  border-radius: 100px;
+  border-width: 0;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: CircularStd, sans-serif;
+  font-size: 1rem;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 6px 20px;
+  position: relative;
+  text-align: center;
+  transition: background-color 0.2s, background-position 0.2s;
+  vertical-align: top;
+}
+
+button:active,
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background-position: -20px -20px;
+}
+
+button:focus:not(:active) {
+  box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 0.125em;
 }
 
 nav {
-  background-color: #82204a;
+  background-color: #6db4d4;
   width: 100vw;
-  min-width: 550px;
-  display: grid;
-  grid-template-columns: 70% 30%;
-  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
 }
 
 nav h1,
@@ -52,46 +98,84 @@ a:link {
   text-decoration: none;
 }
 
-nav h1 {
+.logo-text a {
   font-size: 3em;
-  margin: auto 0;
-  margin-left: 2%;
+  color: white;
 }
 
 nav ul {
   font-size: 1.2em;
-
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  gap: 2rem;
+  list-style: none;
 }
 
 .home-wrap {
   display: flex;
   flex-direction: column;
+  justify-content: end;
+  background-image: url("./assets/ipa-can-and-glass.jpg");
+  background-size: cover;
   height: 90vh;
 }
 
-.home-banner {
-  height: 100%;
-  position: relative;
+.banner {
+  bottom: 0;
+  color: #6dd483;
+  padding: 4rem 4rem;
+  padding-bottom: 10rem;
+  background-image: linear-gradient(
+    transparent,
+    20%,
+    rgba(0, 0, 0, 0.7),
+    70%,
+    rgba(0, 0, 0, 0.95)
+  );
 }
 
-.home-banner img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+.banner h1 {
+  font-size: 6rem;
+  font-family: Kanit;
+  line-height: 1;
+  margin-bottom: 1rem;
 }
 
-.intro-copy {
-  position: absolute;
-  bottom: 0%;
-  left: 0%;
+.banner p {
+  max-width: 800px;
+  margin-bottom: 1.5rem;
+}
+
+.shop-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+    url("./assets/colourful-beer-in-glasses.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 15vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-banner h2 {
   color: white;
-  width: 30%;
-  background-color: #82204a;
-  padding: 2% 2%;
-  border-radius: 0 5px 0 0;
+  font-size: 4rem;
+}
+
+.filter-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.filter ul {
+  list-style: none;
+}
+
+.filter ul li {
+  display: inline;
+  margin: 0 0.5rem;
 }
 
 .cart {

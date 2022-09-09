@@ -1,19 +1,18 @@
-import shoppingCart from "./../images/shoppingcart.jpg";
+import ipaSplash from "./../assets/ipa-can-and-glass.jpg";
 
 export default function Home() {
   return (
     <div className="home-wrap">
-      <div className="home-banner">
-        <img src={shoppingCart} />
-        <div className="intro-copy">
-          <p>
-            Welcome to this brand new online shopping experience. All of your
-            previous shopping activity is going to be made to look very silly
-            and antiquated compared to this glossy, fresh take on things. What
-            we have here is your bog standard shopping cart, but in digital
-            form! Ever so exciting and truly something to marvel at.
-          </p>
-        </div>
+      <div className="banner">
+        <h1>The finest beer known to man</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis
+          odio eget est vulputate tristique et at diam. In sed est felis.
+          Aliquam ornare, ligula eu gravida consectetur, purus massa fermentum
+          velit, sit amet viverra elit tortor a magna. Ut malesuada elementum
+          venenatis.
+        </p>
+        <button className="banner-button">Shop beers</button>
       </div>
     </div>
   );

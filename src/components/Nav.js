@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 export default function Nav() {
   return (
     <nav>
-      <h1>Shopping Cart</h1>
+      <div className="logo-text">
+        <Link to="/">Splashy Brews</Link>
+      </div>
       <ul>
         <Link to="/">
           <li>Home</li>

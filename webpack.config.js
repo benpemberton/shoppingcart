@@ -13,6 +13,7 @@ module.exports = () => {
       port: 3010,
       open: true,
       allowedHosts: "all",
+      historyApiFallback: true,
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -26,6 +27,7 @@ module.exports = () => {
       filename: "main.js",
       path: path.resolve(__dirname, "dist"),
       clean: true,
+      publicPath: "/",
     },
     module: {
       rules: [
