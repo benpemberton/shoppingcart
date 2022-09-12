@@ -17,44 +17,52 @@ export default function Shop(props) {
 
     const items = await data.json();
 
-    console.log(items);
-
     setItems(items);
     setDisplayItems(items);
   };
 
-  const filterItems = (string) => {
-    if (string === "Show all") {
+  const filterItems = (...args) => {
+    if (
+      args.some((argument) => {
+        return argument === "Show all";
+      })
+    ) {
       setDisplayItems(items);
       return;
     }
 
     const filteredArray = items.filter((item) => {
-      return item.tagline.includes(string);
+      const tag = args.some((argument) => {
+        return item.tagline.includes(argument);
+      });
+      const name = args.some((argument) => {
+        return item.name.includes(argument);
+      });
+      return tag || name;
     });
 
     setDisplayItems(filteredArray);
   };
 
   return (
-    <div>
+    <div className="shop-wrap">
       <div className="cart-display">
         <CartArea cartItems={props.cartItems} items={items} />
       </div>
-      <div className="shop-banner">
-        <h2>Get yourself a tipple</h2>
-      </div>
+
       <FilterOptions filterItems={filterItems} />
       <div className="cards-container">
-        <div className="item-cards">
-          {displayItems.map((item) => (
-            <Item
-              key={uniqid()}
-              {...item}
-              cartItems={props.cartItems}
-              handler={props.handler}
-            />
-          ))}
+        <div className="cards-bg">
+          <div className="item-cards">
+            {displayItems.map((item) => (
+              <Item
+                key={uniqid()}
+                {...item}
+                cartItems={props.cartItems}
+                handler={props.handler}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

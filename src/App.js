@@ -1,15 +1,13 @@
 import Nav from "./components/Nav";
 // import RouteSwitch from "./components/RouteSwitch";
 import "./app.css";
-import {  Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
 import { useState, useEffect } from "react";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => console.log(cartItems));
 
   function addHandler(id, name, amount) {
     const newArray = cartItems;
@@ -27,16 +25,16 @@ function App() {
   }
 
   return (
-      <div className="App">
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/shop"
-            element={<Shop handler={addHandler} cartItems={cartItems} />}
-          />
-        </Routes>
-      </div>
+    <div className="App">
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/shop"
+          element={<Shop handler={addHandler} cartItems={cartItems} />}
+        />
+      </Routes>
+    </div>
   );
 }
 

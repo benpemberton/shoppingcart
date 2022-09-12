@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ListItem from "./ListItem";
 import uniqid from "uniqid";
-import { useEffect } from "react";
 
 export default function CartArea(props) {
   const [showCart, setShowCart] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(true);
+
+  useEffect(() => {
+    if (props.cartItems.length > 0 && isEmpty) {
+      setIsEmpty(false);
+    }
+  }, [props.cartItems]);
 
   function sumItems() {
     if (props.cartItems.length === 0) return;
@@ -16,25 +22,33 @@ export default function CartArea(props) {
     return total;
   }
 
-  if (showCart) {
-    return (
-      <div className="cart expanded">
-        <i
-          class="fas fa-times close-cart"
-          onClick={() => setShowCart(false)}
-        ></i>
-        <div className="cart-list-wrap">
-          {props.cartItems.map((item) => {
-            return <ListItem key={uniqid()} {...item} />;
-          })}
-        </div>
-      </div>
-    );
-  } else
-    return (
-      <div className="cart" onClick={() => setShowCart(true)}>
-        <i class="fas fa-shopping-cart"></i>
-        <span className="cart-num">{sumItems()}</span>
-      </div>
-    );
+  const getClasses = () => {
+    if (showCart) return "cart expanded";
+
+    return "cart";
+  };
+
+  return (
+    <div className={getClasses()} onClick={() => setShowCart(true)}>
+      {showCart ? (
+        <>
+          <i
+            className="fas fa-times close-cart"
+            onClick={() => setShowCart(false)}
+          ></i>
+          <div className="cart-list-wrap">
+            {props.cartItems.map((item) => {
+              return <ListItem key={uniqid()} {...item} />;
+            })}
+          </div>
+          <button>Checkout</button>
+        </>
+      ) : (
+        <>
+          <i className="fas fa-shopping-cart"></i>
+          <span className="cart-num">{sumItems()}</span>
+        </>
+      )}
+    </div>
+  );
 }
