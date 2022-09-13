@@ -4,7 +4,7 @@ import CartArea from "./CartArea";
 import FilterOptions from "./FilterOptions";
 import uniqid from "uniqid";
 
-export default function Shop(props) {
+export default function Shop({ addToCart, cartItems }) {
   const [items, setItems] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
 
@@ -46,21 +46,12 @@ export default function Shop(props) {
 
   return (
     <div className="shop-wrap">
-      <div className="cart-display">
-        <CartArea cartItems={props.cartItems} items={items} />
-      </div>
-
       <FilterOptions filterItems={filterItems} />
       <div className="cards-container">
         <div className="cards-bg">
           <div className="item-cards">
             {displayItems.map((item) => (
-              <Item
-                key={uniqid()}
-                {...item}
-                cartItems={props.cartItems}
-                handler={props.handler}
-              />
+              <Item key={uniqid()} {...item} addToCart={addToCart} />
             ))}
           </div>
         </div>

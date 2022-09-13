@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
 import ListItem from "./ListItem";
 import uniqid from "uniqid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-export default function CartArea(props) {
+export default function CartArea({ cartItems, updateCart }) {
   const [showCart, setShowCart] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
 
   useEffect(() => {
-    if (props.cartItems.length > 0 && isEmpty) {
+    if (cartItems.length > 0 && isEmpty) {
       setIsEmpty(false);
     }
-  }, [props.cartItems]);
+  }, [cartItems]);
 
   function sumItems() {
-    if (props.cartItems.length === 0) return;
+    if (cartItems.length === 0) return;
 
     let total = 0;
 
-    props.cartItems.forEach((item) => (total += Number(item.amount)));
+    cartItems.forEach((item) => (total += Number(item.amount)));
 
     return total;
   }
@@ -28,24 +30,33 @@ export default function CartArea(props) {
     return "cart";
   };
 
+  function toggleCart(e) {
+    if (e.currentTarget.classList.contains("expanded")) return;
+
+    e.currentTarget.classList.contains("close-cart")
+      ? setShowCart(false)
+      : setShowCart(true);
+  }
+
   return (
-    <div className={getClasses()} onClick={() => setShowCart(true)}>
+    <div className={getClasses()} onClick={toggleCart}>
       {showCart ? (
         <>
-          <i
-            className="fas fa-times close-cart"
-            onClick={() => setShowCart(false)}
-          ></i>
+          <div className="close-cart" onClick={toggleCart}>
+            <FontAwesomeIcon icon={faTimes} />
+          </div>
           <div className="cart-list-wrap">
-            {props.cartItems.map((item) => {
-              return <ListItem key={uniqid()} {...item} />;
+            {cartItems.map((item) => {
+              return (
+                <ListItem key={uniqid()} {...item} updateCart={updateCart} />
+              );
             })}
           </div>
-          <button>Checkout</button>
+          <button className="checkout-button">Checkout</button>
         </>
       ) : (
         <>
-          <i className="fas fa-shopping-cart"></i>
+          <FontAwesomeIcon icon={faShoppingCart} />
           <span className="cart-num">{sumItems()}</span>
         </>
       )}

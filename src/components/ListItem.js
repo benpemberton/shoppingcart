@@ -1,18 +1,21 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
-export default function ListItem(props) {
+export default function ListItem({ id, name, amount, updateCart }) {
+  const [quantity, setQuantity] = useState(amount);
+
+  function updateAmount(e) {
+    setQuantity(e.target.value);
+  }
+
   return (
     <div className="cart-list-item">
       <div className="item-info">
-        <p className="item-name">{props.name}</p>
-        <p className="item-quantity">Quantity: {props.amount}</p>
+        <p className="item-name">{name}</p>
       </div>
-      <div className="edit-quantity">
-        <FontAwesomeIcon icon={faMinus} />
-
-        <FontAwesomeIcon icon={faPlus} />
+      <div className="update-item-area">
+        <input type="number" value={quantity} onChange={updateAmount} />
+        <button onClick={() => updateCart(id, quantity)}>Update</button>
+        <button onClick={() => updateCart(id, 0)}>Remove</button>
       </div>
     </div>
   );
