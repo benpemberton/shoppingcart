@@ -4,10 +4,27 @@ import "./app.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
+import About from "./components/About";
 import { useState, useEffect } from "react";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    checkLocal();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  function checkLocal() {
+    if (localStorage.length === 0) return;
+
+    const cart = localStorage.getItem("cart");
+
+    setCartItems(JSON.parse(cart));
+  }
 
   function updateCart(id, amount) {
     const newArray = cartItems;
@@ -67,6 +84,7 @@ function App() {
           path="/shop"
           element={<Shop addToCart={addToCart} cartItems={cartItems} />}
         />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );

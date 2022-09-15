@@ -135,7 +135,47 @@ nav ul {
   justify-content: end;
   background-image: url("./assets/ipa-can-and-glass.jpg");
   background-size: cover;
-  height: 90vh;
+  height: 100vh;
+}
+
+.about-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding-top: 10vh;
+}
+
+.about__page-header {
+  padding: 4rem 0;
+  font-size: 2.2rem;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 5rem;
+  max-width: 1400px;
+  position: relative;
+}
+
+.text-area {
+  position: absolute;
+  line-height: 1.5;
+  background-color: #6dd483;
+  padding: 2rem;
+  width: 40%;
+  left: 0;
+  box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.221);
+}
+
+.image-area {
+  width: 70%;
+}
+
+.image-area img {
+  box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.221);
 }
 
 .banner {
@@ -170,8 +210,8 @@ nav ul {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  min-height: 100vh;
   padding-top: 10vh;
+  min-height: 100vh;
 }
 
 .shop-banner {
@@ -211,6 +251,7 @@ nav ul {
 }
 
 .cart {
+  z-index: 999999;
   display: flex;
   flex-direction: column;
   justify-content: center;

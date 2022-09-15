@@ -53,6 +53,7 @@ export default function CartArea({ cartItems, updateCart }) {
             })}
           </div>
           <button className="checkout-button">Checkout</button>
+          <p>{sumItems()} items</p>
         </>
       ) : (
         <>
