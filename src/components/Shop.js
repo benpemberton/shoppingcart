@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import Item from "./Item";
-import CartArea from "./CartArea";
 import FilterOptions from "./FilterOptions";
+import Placeholder from "./Placeholder";
+import TransitionDiv from "./TransitionDiv";
 import uniqid from "uniqid";
 
 export default function Shop({ addToCart, cartItems }) {
   const [items, setItems] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchInfo();
@@ -19,6 +21,7 @@ export default function Shop({ addToCart, cartItems }) {
 
     setItems(items);
     setDisplayItems(items);
+    setIsLoading(false);
   };
 
   const filterItems = (...args) => {
@@ -45,17 +48,26 @@ export default function Shop({ addToCart, cartItems }) {
   };
 
   return (
-    <div className="shop-wrap">
+    <TransitionDiv name="shop">
       <FilterOptions filterItems={filterItems} />
       <div className="cards-container">
         <div className="cards-bg">
           <div className="item-cards">
-            {displayItems.map((item) => (
-              <Item key={uniqid()} {...item} addToCart={addToCart} />
-            ))}
+            {isLoading &&
+              Array(12)
+                .fill()
+                .map((item) => (
+                  <div key={uniqid()} className="card-placeholder">
+                    <Placeholder />
+                  </div>
+                ))}
+            {!isLoading &&
+              displayItems.map((item) => (
+                <Item key={uniqid()} {...item} addToCart={addToCart} />
+              ))}
           </div>
         </div>
       </div>
-    </div>
+    </TransitionDiv>
   );
 }

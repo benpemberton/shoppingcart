@@ -1,11 +1,12 @@
 import Nav from "./components/Nav";
 import CartArea from "./components/CartArea";
 import "./app.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
 import About from "./components/About";
 import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -72,20 +73,24 @@ function App() {
     }
   }
 
+  const location = useLocation();
+
   return (
     <div className="App">
       <Nav />
       <div className="cart-display">
         <CartArea cartItems={cartItems} updateCart={updateCart} />
       </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/shop"
-          element={<Shop addToCart={addToCart} cartItems={cartItems} />}
-        />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <AnimatePresence initial={false} mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/shop"
+            element={<Shop addToCart={addToCart} cartItems={cartItems} />}
+          />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </AnimatePresence>
     </div>
   );
 }
