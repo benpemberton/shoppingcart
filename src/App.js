@@ -78,9 +78,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <div className="cart-display">
-        <CartArea cartItems={cartItems} updateCart={updateCart} />
-      </div>
+      <CartArea cartItems={cartItems} updateCart={updateCart} />
       <AnimatePresence initial={false} mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />

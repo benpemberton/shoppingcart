@@ -274,7 +274,7 @@ nav ul {
   font-family: "Courier New", Courier, monospace;
 }
 
-.cart:hover {
+/* .cart:hover {
   height: 55px;
   width: 55px;
 }
@@ -286,7 +286,7 @@ nav ul {
   padding: 1rem;
   padding-right: 2rem;
   overflow: hidden;
-}
+} */
 
 .cart-list-wrap {
   /* background-color: white; */
