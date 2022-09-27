@@ -1,15 +1,6 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 
-export default function ListItem({
-  id,
-  name,
-  amount,
-  updateCart,
-  itemVars,
-  i,
-  isCartOpen,
-}) {
+export default function ListItem({ id, name, amount, updateCart }) {
   const [quantity, setQuantity] = useState(amount);
 
   function updateAmount(e) {
@@ -17,13 +8,7 @@ export default function ListItem({
   }
 
   return (
-    <motion.div
-      className="cart-list-item"
-      initial={isCartOpen ? "visible" : "hidden"}
-      animate="visible"
-      variants={itemVars}
-      custom={i}
-    >
+    <div className="cart-list-item">
       <div className="item-info">
         <p className="item-name">{name}</p>
       </div>
@@ -32,6 +17,6 @@ export default function ListItem({
         <button onClick={() => updateCart(id, quantity)}>Update</button>
         <button onClick={() => updateCart(id, 0)}>Remove</button>
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import Nav from "./components/Nav";
+import NavBar from "./components/NavBar";
 import CartArea from "./components/CartArea";
 import "./app.css";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -10,6 +10,7 @@ import { AnimatePresence } from "framer-motion";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
     checkLocal();
@@ -25,6 +26,10 @@ function App() {
     const cart = localStorage.getItem("cart");
 
     setCartItems(JSON.parse(cart));
+  }
+
+  function toggleCart() {
+    setShowCart(!showCart);
   }
 
   function updateCart(id, amount) {
@@ -77,8 +82,13 @@ function App() {
 
   return (
     <div className="App">
-      <Nav />
-      <CartArea cartItems={cartItems} updateCart={updateCart} />
+      <NavBar toggleCart={toggleCart} showCart={showCart} />
+      <CartArea
+        cartItems={cartItems}
+        updateCart={updateCart}
+        showCart={showCart}
+        toggleCart={toggleCart}
+      />
       <AnimatePresence initial={false} mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
