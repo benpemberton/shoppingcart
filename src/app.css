@@ -283,6 +283,13 @@ nav ul {
 .filter ul li {
   display: inline;
   margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.filter ul li.active {
+  display: inline;
+  margin: 0 0.5rem;
+  text-decoration: underline;
 }
 
 .filter a:focus {

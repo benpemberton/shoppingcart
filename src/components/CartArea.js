@@ -1,15 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem, setAmount, setShowCart } from "../redux/cartSlice";
 import ListItem from "./ListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-export default function CartArea({
-  cartItems,
-  updateCart,
-  showCart,
-  toggleCart,
-}) {
+export default function CartArea() {
+  const { cartItems, showCart } = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
   function sumItems() {
     if (cartItems.length === 0) return;
 
@@ -18,6 +18,15 @@ export default function CartArea({
     cartItems.forEach((item) => (total += Number(item.amount)));
 
     return total;
+  }
+
+  function updateCart(id, amount) {
+    const index = cartItems.findIndex((item) => item.id === id);
+    if (!amount) {
+      dispatch(removeItem({ index }));
+    } else {
+      dispatch(setAmount({ index, amount }));
+    }
   }
 
   return (
@@ -36,7 +45,10 @@ export default function CartArea({
           classNames="inner-cart"
         >
           <div className="inner-cart">
-            <div className="close-button" onClick={toggleCart}>
+            <div
+              className="close-button"
+              onClick={() => dispatch(setShowCart(false))}
+            >
               <FontAwesomeIcon icon={faTimes} />
             </div>
             <TransitionGroup className="cart-list-wrap">

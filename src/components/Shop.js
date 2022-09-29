@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem, updateAmount } from "../redux/cartSlice";
 import Item from "./Item";
-import FilterOptions from "./FilterOptions";
+import FilterList from "./FilterList";
 import Placeholder from "./Placeholder";
 import uniqid from "uniqid";
 
-export default function Shop({ addToCart, cartItems }) {
+export default function Shop() {
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
   const [items, setItems] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +18,6 @@ export default function Shop({ addToCart, cartItems }) {
   }, []);
 
   const fetchInfo = async () => {
-    console.log("fetching");
     const data = await fetch("https://api.punkapi.com/v2/beers");
 
     const items = await data.json();
@@ -24,32 +27,19 @@ export default function Shop({ addToCart, cartItems }) {
     setIsLoading(false);
   };
 
-  const filterItems = (...args) => {
-    if (
-      args.some((argument) => {
-        return argument === "Show all";
-      })
-    ) {
-      setDisplayItems(items);
-      return;
+  function addToCart(id, name, amount) {
+    const index = cartItems.findIndex((item) => item.id === id);
+    // findIndex returns -1 for arrays where no items return truthy for function
+    if (index > -1) {
+      dispatch(updateAmount({ id, index, amount }));
+    } else {
+      dispatch(addItem({ id, name, amount }));
     }
-
-    const filteredArray = items.filter((item) => {
-      const tag = args.some((argument) => {
-        return item.tagline.includes(argument);
-      });
-      const name = args.some((argument) => {
-        return item.name.includes(argument);
-      });
-      return tag || name;
-    });
-
-    setDisplayItems(filteredArray);
-  };
+  }
 
   return (
     <div className="shop-wrap">
-      <FilterOptions filterItems={filterItems} />
+      <FilterList items={items} setDisplayItems={setDisplayItems} />
       <div className="cards-container">
         <div className="cards-bg">
           <div className="item-cards">
