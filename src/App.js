@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Shop from "./components/Shop";
 import About from "./components/About";
 import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
+import PageLayout from "./components/PageLayout";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -89,18 +89,41 @@ function App() {
         showCart={showCart}
         toggleCart={toggleCart}
       />
-      <AnimatePresence initial={false} mode="wait">
-        <Routes location={location} key={location.pathname}>
+      <Routes>
+        <Route element={<PageLayout />}>
           <Route path="/" element={<Home />} />
           <Route
             path="/shop"
             element={<Shop addToCart={addToCart} cartItems={cartItems} />}
           />
           <Route path="/about" element={<About />} />
-        </Routes>
-      </AnimatePresence>
+        </Route>
+      </Routes>
     </div>
   );
 }
+
+//   return (
+//     <div className="App">
+//       <NavBar toggleCart={toggleCart} showCart={showCart} />
+//       <CartArea
+//         cartItems={cartItems}
+//         updateCart={updateCart}
+//         showCart={showCart}
+//         toggleCart={toggleCart}
+//       />
+//       <AnimatePresence initial={false} mode="wait">
+//         <Routes location={location} key={location.pathname}>
+//           <Route path="/" element={<Home />} />
+//           <Route
+//             path="/shop"
+//             element={<Shop addToCart={addToCart} cartItems={cartItems} />}
+//           />
+//           <Route path="/about" element={<About />} />
+//         </Routes>
+//       </AnimatePresence>
+//     </div>
+//   );
+// }
 
 export default App;

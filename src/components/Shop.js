@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Item from "./Item";
 import FilterOptions from "./FilterOptions";
 import Placeholder from "./Placeholder";
-import TransitionDiv from "./TransitionDiv";
 import uniqid from "uniqid";
 
 export default function Shop({ addToCart, cartItems }) {
@@ -15,6 +14,7 @@ export default function Shop({ addToCart, cartItems }) {
   }, []);
 
   const fetchInfo = async () => {
+    console.log("fetching");
     const data = await fetch("https://api.punkapi.com/v2/beers");
 
     const items = await data.json();
@@ -48,7 +48,7 @@ export default function Shop({ addToCart, cartItems }) {
   };
 
   return (
-    <TransitionDiv name="shop">
+    <div className="shop-wrap">
       <FilterOptions filterItems={filterItems} />
       <div className="cards-container">
         <div className="cards-bg">
@@ -68,6 +68,6 @@ export default function Shop({ addToCart, cartItems }) {
           </div>
         </div>
       </div>
-    </TransitionDiv>
+    </div>
   );
 }

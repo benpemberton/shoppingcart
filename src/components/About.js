@@ -1,10 +1,8 @@
 import BreweryPic from "../assets/beer-kegs-piled-up.jpg";
-import { motion } from "framer-motion";
-import TransitionDiv from "./TransitionDiv";
 
 const About = () => {
   return (
-    <TransitionDiv name="about">
+    <div className="about-wrap">
       <div className="main-content">
         <div className="text-area">
           <p>
@@ -26,7 +24,7 @@ const About = () => {
           <img src={BreweryPic} alt="Beers kegs piled up in a warehouse." />
         </div>
       </div>
-    </TransitionDiv>
+    </div>
   );
 };
 

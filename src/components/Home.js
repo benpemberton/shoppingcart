@@ -2,7 +2,7 @@ import TransitionDiv from "./TransitionDiv";
 
 export default function Home() {
   return (
-    <TransitionDiv name="home">
+    <div className="home-wrap">
       <div className="banner">
         <h1>The finest beer known to man</h1>
         <p>
@@ -14,6 +14,6 @@ export default function Home() {
         </p>
         <button className="banner-button">Shop beers</button>
       </div>
-    </TransitionDiv>
+    </div>
   );
 }
