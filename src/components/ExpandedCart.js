@@ -1,16 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, setAmount, setShowCart } from "../redux/cartSlice";
-import ListItem from "./ListItem";
+import CartItem from "./CartItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-export default function CartArea() {
+const ExpandedCart = () => {
   const { cartItems, showCart } = useSelector((state) => state.cart);
-
   const dispatch = useDispatch();
 
-  function sumItems() {
+  const sumItems = () => {
     if (cartItems.length === 0) return;
 
     let total = 0;
@@ -18,16 +17,16 @@ export default function CartArea() {
     cartItems.forEach((item) => (total += Number(item.amount)));
 
     return total;
-  }
+  };
 
-  function updateCart(id, amount) {
+  const updateCart = (id, amount) => {
     const index = cartItems.findIndex((item) => item.id === id);
     if (!amount) {
       dispatch(removeItem({ index }));
     } else {
       dispatch(setAmount({ index, amount }));
     }
-  }
+  };
 
   return (
     <CSSTransition
@@ -60,7 +59,7 @@ export default function CartArea() {
                     timeout={{ enter: 300, exit: 300 }}
                     classNames="cart-list-item"
                   >
-                    <ListItem {...item} updateCart={updateCart} />
+                    <CartItem {...item} updateCart={updateCart} />
                   </CSSTransition>
                 );
               })}
@@ -74,4 +73,6 @@ export default function CartArea() {
       </div>
     </CSSTransition>
   );
-}
+};
+
+export default ExpandedCart;

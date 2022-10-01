@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function ListItem({ id, name, amount, updateCart }) {
+const CartItem = ({ id, name, amount, updateCart }) => {
   const [quantity, setQuantity] = useState(amount);
 
-  function updateAmount(e) {
-    setQuantity(e.target.value);
-  }
+  useEffect(() => {
+    setQuantity(amount);
+  }, [amount]);
 
   return (
     <div className="cart-list-item">
@@ -13,10 +13,16 @@ export default function ListItem({ id, name, amount, updateCart }) {
         <p className="item-name">{name}</p>
       </div>
       <div className="update-item-area">
-        <input type="number" value={quantity} onChange={updateAmount} />
+        <input
+          type="number"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
         <button onClick={() => updateCart(id, quantity)}>Update</button>
         <button onClick={() => updateCart(id, 0)}>Remove</button>
       </div>
     </div>
   );
-}
+};
+
+export default CartItem;

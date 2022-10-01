@@ -1,4 +1,4 @@
-export default function Home() {
+const Home = () => {
   return (
     <div className="home-wrap">
       <div className="banner">
@@ -14,4 +14,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

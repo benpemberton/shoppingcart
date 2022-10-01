@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItem, updateAmount } from "../redux/cartSlice";
+import store from "../redux/store";
 import Item from "./Item";
 import FilterList from "./FilterList";
 import Placeholder from "./Placeholder";
 import uniqid from "uniqid";
 
-export default function Shop() {
-  const cartItems = useSelector((state) => state.cart.cartItems);
+function getCartIndex(id) {
+  const cartItems = store.getState().cart.cartItems;
+  return cartItems.findIndex((item) => item.id === id);
+}
+
+const Shop = () => {
   const dispatch = useDispatch();
   const [items, setItems] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
@@ -27,15 +32,15 @@ export default function Shop() {
     setIsLoading(false);
   };
 
-  function addToCart(id, name, amount) {
-    const index = cartItems.findIndex((item) => item.id === id);
+  const addToCart = (id, name, amount) => {
+    const index = getCartIndex(id);
     // findIndex returns -1 for arrays where no items return truthy for function
     if (index > -1) {
       dispatch(updateAmount({ id, index, amount }));
     } else {
       dispatch(addItem({ id, name, amount }));
     }
-  }
+  };
 
   return (
     <div className="shop-wrap">
@@ -60,4 +65,6 @@ export default function Shop() {
       </div>
     </div>
   );
-}
+};
+
+export default Shop;

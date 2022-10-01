@@ -1,13 +1,13 @@
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
-import CartIcon from "./CartIcon";
+import Cart from "./Cart";
 
 const NavBar = () => {
   return (
     <nav>
       <Logo />
       <NavLinks />
-      <CartIcon />
+      <Cart />
     </nav>
   );
 };

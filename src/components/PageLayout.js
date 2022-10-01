@@ -18,10 +18,10 @@ const PageLayout = () => {
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
-  function setScroll(type) {
+  const setScroll = (type) => {
     const body = document.querySelector("body");
     body.style.overflowY = type;
-  }
+  };
 
   return (
     <div>

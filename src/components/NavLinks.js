@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Nav = () => {
+const NavLinks = () => {
   return (
     <ul>
       <Link to="/">
@@ -16,4 +16,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default NavLinks;
