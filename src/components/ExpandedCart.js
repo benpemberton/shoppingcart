@@ -4,6 +4,8 @@ import CartItem from "./CartItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import styled from "styled-components";
+import { Button } from "../styles/GeneralElements";
 
 const ExpandedCart = () => {
   const { cartItems, showCart } = useSelector((state) => state.cart);
@@ -33,46 +35,126 @@ const ExpandedCart = () => {
       in={showCart}
       unmountOnExit
       timeout={{ enter: 400, exit: 600 }}
-      classNames="cart-area"
     >
-      <div className="cart-area">
+      <CartWrap>
         <CSSTransition
           in={showCart}
           unmountOnExit
           appear
           timeout={{ enter: 600, exit: 200 }}
-          classNames="inner-cart"
         >
-          <div className="inner-cart">
+          <CartLayout>
             <div
               className="close-button"
               onClick={() => dispatch(setShowCart(false))}
             >
               <FontAwesomeIcon icon={faTimes} />
             </div>
-            <TransitionGroup className="cart-list-wrap">
-              {cartItems.map((item) => {
-                return (
-                  <CSSTransition
-                    key={item.id}
-                    unmountOnExit
-                    timeout={{ enter: 300, exit: 300 }}
-                    classNames="cart-list-item"
-                  >
-                    <CartItem {...item} updateCart={updateCart} />
-                  </CSSTransition>
-                );
-              })}
-            </TransitionGroup>
+            <CartList>
+              <TransitionGroup>
+                {cartItems.map((item) => {
+                  return (
+                    <CSSTransition
+                      key={item.id}
+                      unmountOnExit
+                      timeout={{ enter: 300, exit: 300 }}
+                    >
+                      <CartItem {...item} updateCart={updateCart} />
+                    </CSSTransition>
+                  );
+                })}
+              </TransitionGroup>
+            </CartList>
             <div className="checkout-area">
-              <button className="checkout-button">Checkout</button>
+              <Button>Checkout</Button>
               <p>{sumItems()} items</p>
             </div>
-          </div>
+          </CartLayout>
         </CSSTransition>
-      </div>
+      </CartWrap>
     </CSSTransition>
   );
 };
+
+const CartWrap = styled.div`
+  z-index: 999999;
+  background-color: #2b94b1;
+  border-radius: 5px 0 0 5px;
+  position: fixed;
+  right: 0;
+  top: 10vh;
+  height: 90vh;
+  width: 30rem;
+  padding: 1rem;
+  font-family: "Courier New", Courier, monospace;
+
+  &.appear {
+    transform: translateX(100%);
+  }
+
+  &.appear-active {
+    transform: translateX(0);
+    transition: transform 400ms;
+  }
+
+  &.enter {
+    transform: translateX(100%);
+  }
+
+  &.enter-active {
+    transform: translateX(0);
+    transition: transform 400ms;
+  }
+
+  &.exit {
+    transform: translateX(0);
+  }
+
+  &.exit-active {
+    transform: translateX(100%);
+    transition: transform 400ms 200ms;
+  }
+`;
+
+const CartLayout = styled.div`
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  gap: 1rem;
+  height: 100%;
+
+  &.appear {
+    opacity: 0;
+  }
+
+  &.appear-active {
+    opacity: 1;
+    transition: opacity 200ms 400ms;
+  }
+
+  &.enter {
+    opacity: 0;
+  }
+
+  &.enter-active {
+    opacity: 1;
+    transition: opacity 200ms 400ms;
+  }
+
+  &.exit {
+    opacity: 1;
+  }
+
+  &.exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+`;
+
+const CartList = styled.div`
+  width: 100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+  overflow-y: auto;
+`;
 
 export default ExpandedCart;

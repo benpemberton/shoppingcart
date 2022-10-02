@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import { useLocation, useOutlet } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
+import { setHeaderHeight, setScroll } from "../utils/displayHelpers";
 
 const PageLayout = () => {
   const location = useLocation();
   let outlet = useOutlet();
   const [currentOutlet, setCurrentOutlet] = useState(outlet);
   const [isRouting, setIsRouting] = useState(false);
+
+  useEffect(() => {
+    setHeaderHeight();
+
+    window.addEventListener("resize", setHeaderHeight);
+  }, []);
 
   useEffect(() => {
     setIsRouting(false);
@@ -18,13 +25,8 @@ const PageLayout = () => {
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
-  const setScroll = (type) => {
-    const body = document.querySelector("body");
-    body.style.overflowY = type;
-  };
-
   return (
-    <div>
+    <main>
       <CSSTransition
         key={location.pathname}
         in={isRouting}
@@ -36,7 +38,7 @@ const PageLayout = () => {
       >
         {currentOutlet}
       </CSSTransition>
-    </div>
+    </main>
   );
 };
 

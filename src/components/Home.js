@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <div className="home-wrap">
@@ -10,7 +12,9 @@ const Home = () => {
           velit, sit amet viverra elit tortor a magna. Ut malesuada elementum
           venenatis.
         </p>
-        <button className="banner-button">Shop beers</button>
+        <Link to="/shop">
+          <button className="banner-button">Shop beers</button>
+        </Link>
       </div>
     </div>
   );
