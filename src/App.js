@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ExpandedCart from "./components/ExpandedCart";
-import "./app.css";
+// import "./app.css";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
 import About from "./components/About";

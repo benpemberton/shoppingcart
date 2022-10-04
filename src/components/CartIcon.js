@@ -1,14 +1,24 @@
+import CartQuantity from "./CartQuantity";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
-const CartIcon = ({ toggleCart }) => {
+const CartIcon = ({ toggleCart, sumItems }) => {
   return (
-    <div className="cart-icon" onClick={toggleCart}>
+    <IconWrap onClick={toggleCart}>
       <FontAwesomeIcon icon={faShoppingCart} />
-      <span className="cart-num">{}</span>
-    </div>
+      {sumItems() && <CartQuantity sumItems={sumItems} />}
+    </IconWrap>
   );
 };
+
+const IconWrap = styled.div`
+  position: relative;
+
+  svg {
+    font-size: 1.2rem;
+    color: #000;
+  }
+`;
 
 export default CartIcon;

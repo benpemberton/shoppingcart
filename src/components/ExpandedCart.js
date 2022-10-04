@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, setAmount, setShowCart } from "../redux/cartSlice";
-import CartItem from "./CartItem";
+import CartList from "./CartList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import { Button } from "../styles/GeneralElements";
 
@@ -44,31 +44,17 @@ const ExpandedCart = () => {
           timeout={{ enter: 600, exit: 200 }}
         >
           <CartLayout>
-            <div
-              className="close-button"
-              onClick={() => dispatch(setShowCart(false))}
-            >
-              <FontAwesomeIcon icon={faTimes} />
-            </div>
-            <CartList>
-              <TransitionGroup>
-                {cartItems.map((item) => {
-                  return (
-                    <CSSTransition
-                      key={item.id}
-                      unmountOnExit
-                      timeout={{ enter: 300, exit: 300 }}
-                    >
-                      <CartItem {...item} updateCart={updateCart} />
-                    </CSSTransition>
-                  );
-                })}
-              </TransitionGroup>
-            </CartList>
-            <div className="checkout-area">
+            <CloseCart>
+              <FontAwesomeIcon
+                icon={faTimes}
+                onClick={() => dispatch(setShowCart(false))}
+              />
+            </CloseCart>
+            <CartList cartItems={cartItems} updateCart={updateCart} />
+            <CheckoutArea>
               <Button>Checkout</Button>
               <p>{sumItems()} items</p>
-            </div>
+            </CheckoutArea>
           </CartLayout>
         </CSSTransition>
       </CartWrap>
@@ -150,11 +136,12 @@ const CartLayout = styled.div`
   }
 `;
 
-const CartList = styled.div`
-  width: 100%;
-  border-radius: 5px;
-  box-sizing: border-box;
-  overflow-y: auto;
+const CloseCart = styled.div``;
+
+const CheckoutArea = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;
 
 export default ExpandedCart;

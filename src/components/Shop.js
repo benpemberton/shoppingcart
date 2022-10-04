@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { addItem, updateAmount } from "../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setItems, addItem, updateAmount } from "../redux/cartSlice";
 import store from "../redux/store";
-import Item from "./Item";
+import Products from "./Products";
 import FilterList from "./FilterList";
-import Placeholder from "./Placeholder";
-import uniqid from "uniqid";
+import { PageWrap } from "../styles/ContainerElements";
+import styled from "styled-components";
+import BeerGlasses from "../assets/colourful-beer-in-glasses.jpg";
 
 function getCartIndex(id) {
   const cartItems = store.getState().cart.cartItems;
@@ -13,13 +14,12 @@ function getCartIndex(id) {
 }
 
 const Shop = () => {
+  const items = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
-  const [items, setItems] = useState([]);
-  const [displayItems, setDisplayItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [displayItems, setDisplayItems] = useState(null);
 
   useEffect(() => {
-    fetchInfo();
+    items ? setDisplayItems(items) : fetchInfo();
   }, []);
 
   const fetchInfo = async () => {
@@ -27,9 +27,8 @@ const Shop = () => {
 
     const items = await data.json();
 
-    setItems(items);
+    dispatch(setItems(items));
     setDisplayItems(items);
-    setIsLoading(false);
   };
 
   const addToCart = (id, name, amount) => {
@@ -43,28 +42,28 @@ const Shop = () => {
   };
 
   return (
-    <div className="shop-wrap">
+    <ShopWrap>
       <FilterList items={items} setDisplayItems={setDisplayItems} />
-      <div className="cards-container">
-        <div className="cards-bg">
-          <div className="item-cards">
-            {isLoading &&
-              Array(12)
-                .fill()
-                .map((item) => (
-                  <div key={uniqid()} className="card-placeholder">
-                    <Placeholder />
-                  </div>
-                ))}
-            {!isLoading &&
-              displayItems.map((item) => (
-                <Item key={uniqid()} {...item} addToCart={addToCart} />
-              ))}
-          </div>
-        </div>
-      </div>
-    </div>
+      <Products
+        items={items}
+        displayItems={displayItems}
+        addToCart={addToCart}
+      />
+    </ShopWrap>
   );
 };
+
+const ShopWrap = styled(PageWrap)`
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+    url("${BeerGlasses}");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: calc(100vh - var(--headerHeight));
+  margin-top: var(--headerHeight);
+  padding: 0;
+  display: block;
+  height: auto;
+`;
 
 export default Shop;

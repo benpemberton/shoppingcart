@@ -1,4 +1,12 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+@font-face {
+    font-family: 'Kanit';
+    src: url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+}
 
 html {
   box-sizing: border-box;
@@ -77,21 +85,6 @@ h3 {
 a:link {
   text-decoration: none;
 }
+`;
 
-@media only screen and (max-width: 1750px) {
-  .item-cards {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-@media only screen and (max-width: 1300px) {
-  .item-cards {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media only screen and (max-width: 850px) {
-  .item-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+export default GlobalStyle;

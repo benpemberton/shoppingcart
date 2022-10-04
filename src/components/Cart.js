@@ -27,7 +27,17 @@ const Cart = () => {
     dispatch(setShowCart(!showCart));
   };
 
-  return <CartIcon toggleCart={toggleCart} />;
+  const sumItems = () => {
+    if (cartItems.length === 0) return;
+
+    let total = 0;
+
+    cartItems.forEach((item) => (total += Number(item.amount)));
+
+    return total;
+  };
+
+  return <CartIcon sumItems={sumItems} toggleCart={toggleCart} />;
 };
 
 export default Cart;

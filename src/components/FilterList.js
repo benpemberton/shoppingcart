@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FilterOption from "./FilterOption";
+import styled from "styled-components";
 
 const FilterList = ({ items, setDisplayItems }) => {
   const [currentFilter, setCurrentFilter] = useState("Show all");
@@ -30,40 +31,49 @@ const FilterList = ({ items, setDisplayItems }) => {
   };
 
   return (
-    <div className="filter-wrap">
-      <div className="filter">
-        <ul>
-          <FilterOption
-            text={"Show all"}
-            filter={["Show all"]}
-            filterItems={filterItems}
-            currentFilter={currentFilter}
-          />
-          |
-          <FilterOption
-            text={"Ale"}
-            filter={["Ale"]}
-            filterItems={filterItems}
-            currentFilter={currentFilter}
-          />
-          |
-          <FilterOption
-            text={"Lager"}
-            filter={["Lager"]}
-            filterItems={filterItems}
-            currentFilter={currentFilter}
-          />
-          |
-          <FilterOption
-            text={"IPA"}
-            filter={["IPA", "India Pale Ale"]}
-            filterItems={filterItems}
-            currentFilter={currentFilter}
-          />
-        </ul>
-      </div>
-    </div>
+    <ListWrap>
+      <ul>
+        <FilterOption
+          text={"Show all"}
+          filter={["Show all"]}
+          filterItems={filterItems}
+          currentFilter={currentFilter}
+        />
+        |
+        <FilterOption
+          text={"Ale"}
+          filter={["Ale"]}
+          filterItems={filterItems}
+          currentFilter={currentFilter}
+        />
+        |
+        <FilterOption
+          text={"Lager"}
+          filter={["Lager"]}
+          filterItems={filterItems}
+          currentFilter={currentFilter}
+        />
+        |
+        <FilterOption
+          text={"IPA"}
+          filter={["IPA", "India Pale Ale"]}
+          filterItems={filterItems}
+          currentFilter={currentFilter}
+        />
+      </ul>
+    </ListWrap>
   );
 };
+
+const ListWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+
+  ul {
+    list-style: none;
+    font-size: 1.2rem;
+  }
+`;
 
 export default FilterList;

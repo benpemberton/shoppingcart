@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const NavLinks = () => {
   return (
-    <ul>
+    <Ul>
       <Link to="/">
         <li>Home</li>
       </Link>
@@ -12,8 +13,17 @@ const NavLinks = () => {
       <Link to="/about">
         <li>About</li>
       </Link>
-    </ul>
+    </Ul>
   );
 };
+
+const Ul = styled.ul`
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 2rem;
+  list-style: none;
+`;
 
 export default NavLinks;

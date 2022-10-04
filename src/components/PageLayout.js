@@ -31,7 +31,7 @@ const PageLayout = () => {
         key={location.pathname}
         in={isRouting}
         timeout={300}
-        classNames="page-transition"
+        // classNames="page-transition"
         unmountOnExit
         onEnter={() => setScroll("hidden")}
         onEntered={() => setScroll("auto")}
