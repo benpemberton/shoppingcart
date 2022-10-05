@@ -37,7 +37,7 @@ const Cart = () => {
     return total;
   };
 
-  return <CartIcon sumItems={sumItems} toggleCart={toggleCart} />;
+  return <CartIcon sumItems={sumItems} showCart={showCart} toggleCart={toggleCart} />;
 };
 
 export default Cart;

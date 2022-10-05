@@ -1,16 +1,20 @@
 import { createGlobalStyle } from "styled-components";
+import './fonts.css'
 
 const GlobalStyle = createGlobalStyle`
-@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
-
 @font-face {
-    font-family: 'Kanit';
-    src: url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+  font-family: 'Kanit', sans-serif;
 }
 
 html {
   box-sizing: border-box;
   font-size: 16px;
+
+  @media (max-width: 650px) {
+    & {
+      font-size: 14px;
+    }
+  }
 }
 
 *,
@@ -29,10 +33,6 @@ img {
   max-width: 100%;
   height: auto;
 }
-
-/* 
-MINE FROM HERE
-*/
 
 body {
   overflow-x: hidden;
@@ -53,6 +53,7 @@ p,
 span,
 input {
   font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
 }
 
 /* Chrome, Safari, Edge, Opera */

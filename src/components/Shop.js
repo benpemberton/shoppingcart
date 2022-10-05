@@ -59,11 +59,8 @@ const ShopWrap = styled(PageWrap)`
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  min-height: calc(100vh - var(--headerHeight));
-  margin-top: var(--headerHeight);
   padding: 0;
   display: block;
-  height: auto;
 `;
 
 export default Shop;

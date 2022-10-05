@@ -65,12 +65,11 @@ const ExpandedCart = () => {
 const CartWrap = styled.div`
   z-index: 999999;
   background-color: #2b94b1;
-  border-radius: 5px 0 0 5px;
   position: fixed;
   right: 0;
-  top: 10vh;
-  height: 90vh;
-  width: 30rem;
+  top: var(--headerHeight);
+  height: calc(100vh - var(--headerHeight));
+  width: min(30rem, 100%);
   padding: 1rem;
   font-family: "Courier New", Courier, monospace;
 
@@ -136,7 +135,13 @@ const CartLayout = styled.div`
   }
 `;
 
-const CloseCart = styled.div``;
+const CloseCart = styled.div`
+  svg {
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+`;
 
 const CheckoutArea = styled.div`
   display: flex;

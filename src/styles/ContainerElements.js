@@ -4,8 +4,9 @@ const PageWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: var(--headerHeight);
-  height: calc(100vh - var(--headerHeight));
-  width: 100vw;
+  height: auto;
+  min-height: calc(100vh - var(--headerHeight));
+  width: 100%;
 
   &.appear {
     opacity: 0;

@@ -25,16 +25,18 @@ const Home = () => {
 };
 
 const HomeWrap = styled(PageWrap)`
+  height: calc(100vh - var(--headerHeight));
   justify-content: end;
   background-image: url("${HomeImage}");
   background-size: cover;
+  background-position: center;
 `;
 
 const BannerWrap = styled.div`
   bottom: 0;
   color: #6dd483;
-  padding: 4rem 4rem;
-  padding-bottom: 10rem;
+  padding: 4rem;
+  padding-bottom: 7rem;
   background-image: linear-gradient(
     transparent,
     20%,
@@ -51,8 +53,25 @@ const BannerWrap = styled.div`
   }
 
   p {
+    font-size: 16px;
     max-width: 800px;
     margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 650px) {
+    & {
+      padding-bottom: 5rem;
+    }
+  }
+
+  @media (max-width: 650px) and (max-height: 800px) {
+    & {
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+    }
   }
 `;
 

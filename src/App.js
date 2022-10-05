@@ -1,15 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ExpandedCart from "./components/ExpandedCart";
-// import "./app.css";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
 import About from "./components/About";
 import PageLayout from "./components/PageLayout";
+import styled from 'styled-components'
 
 const App = () => {
   return (
-    <div className="App">
+    <AppWrap>
       <NavBar />
       <ExpandedCart />
       <Routes>
@@ -19,8 +19,12 @@ const App = () => {
           <Route path="/about" element={<About />} />
         </Route>
       </Routes>
-    </div>
+    </AppWrap>
   );
 };
+
+const AppWrap = styled.div`
+  overflow: auto;
+`
 
 export default App;

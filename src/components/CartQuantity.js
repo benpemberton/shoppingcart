@@ -13,18 +13,19 @@ const NumWrap = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: -50%;
+  top: -25%;
   left: 60%;
-  background-color: #fd933e;
+  background-color: #fff;
   border-radius: 50%;
   padding: 0.2rem;
   height: 1.2rem;
   width: 1.2rem;
+  user-select: none;
 
   p {
     margin-top: 0.15rem;
     line-height: 0.8rem;
-    color: white;
+    color: #000;
     font-size: 0.8rem;
     font-family: "Courier New", Courier, monospace;
     font-weight: 900;

@@ -6,6 +6,9 @@ const About = () => {
   return (
     <AboutWrap>
       <MainContent>
+        <ImageArea>
+          <img src={BreweryPic} alt="Beers kegs piled up in a warehouse." />
+        </ImageArea>
         <TextArea>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
@@ -22,42 +25,43 @@ const About = () => {
             justo, quis elementum dui pharetra eu.
           </p>
         </TextArea>
-        <ImageArea>
-          <img src={BreweryPic} alt="Beers kegs piled up in a warehouse." />
-        </ImageArea>
       </MainContent>
     </AboutWrap>
   );
 };
 
 const AboutWrap = styled(PageWrap)`
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
+
+  @media (max-width: 650px) {
+    align-items: start;
+    padding: 0;
+  }
 `;
 
 const MainContent = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: end;
-  gap: 5rem;
-  max-width: 1400px;
-  position: relative;
+  max-width: 1000px;
 `;
 
 const TextArea = styled.div`
-  position: absolute;
-  line-height: 1.5;
-  background-color: #6dd483;
-  padding: 2rem;
-  width: 40%;
-  left: 0;
-  box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.221);
+  padding-top: 2rem;
+
+  p {
+    line-height: 1.5;
+  }
+
+  @media (max-width: 650px) {
+    padding: 2rem;
+  }
 `;
 
 const ImageArea = styled.div`
-  width: 70%;
-
   img {
     box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.221);
   }
