@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FilterOption from "./FilterOption";
-import styled from "styled-components";
+import { ListWrap } from '../styles/components/StyledFilterList'
 
 const FilterList = ({ items, setDisplayItems }) => {
   const [currentFilter, setCurrentFilter] = useState("Show all");
@@ -64,16 +64,5 @@ const FilterList = ({ items, setDisplayItems }) => {
     </ListWrap>
   );
 };
-
-const ListWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 3rem 1rem;
-
-  ul {
-    list-style: none;
-    font-size: 1.2rem;
-  }
-`;
 
 export default FilterList;

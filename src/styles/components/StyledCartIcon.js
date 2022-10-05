@@ -1,12 +1,24 @@
 import styled from "styled-components";
 
-const CartQuantity = ({ sumItems }) => {
-  return (
-    <NumWrap>
-      <p>{sumItems()}</p>
-    </NumWrap>
-  );
-};
+const IconWrap = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    font-size: 1.2rem;
+    color: #e36d0e;
+  }
+
+  &.open svg {
+    color: #e36d0e;
+  }
+
+  &.closed svg {
+    color: #fd933e;
+  }
+`;
 
 const NumWrap = styled.div`
   display: flex;
@@ -32,4 +44,4 @@ const NumWrap = styled.div`
   }
 `;
 
-export default CartQuantity;
+export { IconWrap, NumWrap }

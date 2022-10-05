@@ -1,6 +1,6 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
-import styled from "styled-components";
+import { PlaceholderWrap } from "../styles/components/StyledPlaceholder";
 
 const Placeholder = (props) => (
   <PlaceholderWrap>
@@ -23,12 +23,5 @@ const Placeholder = (props) => (
     </ContentLoader>
   </PlaceholderWrap>
 );
-
-const PlaceholderWrap = styled.div`
-  svg {
-    height: 24rem;
-    width: 15rem;
-  }
-`;
 
 export default Placeholder;

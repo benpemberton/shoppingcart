@@ -1,6 +1,6 @@
 import CartItem from "./CartItem";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import styled from "styled-components";
+import { ListWrap } from '../styles/components/StyledExpandedCart'
 
 const CartList = ({ cartItems, updateCart }) => {
   return (
@@ -21,12 +21,5 @@ const CartList = ({ cartItems, updateCart }) => {
     </ListWrap>
   );
 };
-
-const ListWrap = styled.div`
-  width: 100%;
-  border-radius: 5px;
-  box-sizing: border-box;
-  overflow-y: auto;
-`;
 
 export default CartList;

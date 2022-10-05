@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { Li } from '../styles/components/StyledFilterList'
 
 const FilterOption = ({ text, filter, filterItems, currentFilter }) => {
   return (
@@ -12,17 +12,5 @@ const FilterOption = ({ text, filter, filterItems, currentFilter }) => {
     </Li>
   );
 };
-
-const Li = styled.li`
-  display: inline;
-  margin: 0 0.5rem;
-  cursor: pointer;
-
-  &.active {
-    display: inline;
-    margin: 0 0.5rem;
-    text-decoration: underline;
-  }
-`;
 
 export default FilterOption;

@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import ExpandedCart from "./components/ExpandedCart";
-import Home from "./components/Home";
-import Shop from "./components/Shop";
-import About from "./components/About";
-import PageLayout from "./components/PageLayout";
+import NavBar from "./NavBar";
+import ExpandedCart from "./ExpandedCart";
+import Home from "./Home";
+import Shop from "./Shop";
+import About from "./About";
+import PageLayout from "./PageLayout";
 import styled from 'styled-components'
 
 const App = () => {

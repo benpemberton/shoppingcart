@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { LogoWrap } from '../styles/components/StyledNavBar'
 
 const Logo = () => {
   return (
@@ -9,12 +9,6 @@ const Logo = () => {
   );
 };
 
-const LogoWrap = styled.div`
-  a {
-    font-size: 3rem;
-    color: white;
-    line-height: 1;
-  }
-`;
+
 
 export default Logo;
