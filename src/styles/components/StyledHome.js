@@ -17,23 +17,22 @@ const BannerWrap = styled.div`
   padding-bottom: 7rem;
   background-image: linear-gradient(
     transparent,
-    20%,
+    15%,
     rgba(0, 0, 0, 0.7),
     70%,
     rgba(0, 0, 0, 0.95)
   );
 
   h1 {
-    font-size: 6rem;
-    font-family: Kanit;
+    font-size: ${({ theme }) => theme.fontSizes.xl};
     line-height: 1;
     margin-bottom: 1rem;
   }
 
   p {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fontSizes.md};
     max-width: 800px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   @media (max-width: 650px) {
@@ -48,7 +47,7 @@ const BannerWrap = styled.div`
     }
 
     h1 {
-      font-size: 4rem;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
     }
   }
 `;

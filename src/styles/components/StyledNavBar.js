@@ -4,13 +4,12 @@ const Nav = styled.nav`
   position: fixed;
   top: 0;
   z-index: 99999;
-  background-color: #6db4d4;
+  background-color: ${({ theme }) => theme.colours.lightBlue};
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 4rem;
-  font-family: Kanit;
 
   @media (max-width: 650px) {
     & {
@@ -23,19 +22,19 @@ const Nav = styled.nav`
 
 const LogoWrap = styled.div`
   a {
-    font-size: 3rem;
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     color: white;
     line-height: 1;
   }
 `;
 
-const RightHandLinks = styled.div `
+const RightHandLinks = styled.div`
   display: flex;
   gap: 2rem;
-`
+`;
 
 const UL = styled.ul`
-  font-size: 1.2rem;
+  font-size: ${({ theme }) => theme.fontSizes.md};
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -44,4 +43,3 @@ const UL = styled.ul`
 `;
 
 export { Nav, LogoWrap, RightHandLinks, UL };
-

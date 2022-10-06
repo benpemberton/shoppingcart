@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useOutlet } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { setHeaderHeight, setScroll } from "../utils/displayHelpers";
+import styled from "styled-components";
 
 const PageLayout = () => {
   const location = useLocation();
@@ -26,7 +27,7 @@ const PageLayout = () => {
   }, [location.pathname]);
 
   return (
-    <main>
+    <Main>
       <CSSTransition
         key={location.pathname}
         in={isRouting}
@@ -38,8 +39,12 @@ const PageLayout = () => {
       >
         {currentOutlet}
       </CSSTransition>
-    </main>
+    </Main>
   );
 };
+
+const Main = styled.main`
+  padding-top: var(--headerHeight);
+`;
 
 export default PageLayout;

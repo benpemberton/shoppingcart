@@ -7,7 +7,7 @@ const ListWrap = styled.div`
 
   ul {
     list-style: none;
-    font-size: 1.2rem;
+    font-size: ${({ theme }) => theme.fontSizes.md};
   }
 `;
 
@@ -23,4 +23,4 @@ const Li = styled.li`
   }
 `;
 
-export { ListWrap, Li }
+export { ListWrap, Li };

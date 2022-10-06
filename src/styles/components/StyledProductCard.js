@@ -30,6 +30,7 @@ const Details = styled.div`
 
   h3,
   p {
+    font-family: ${({ theme }) => theme.fonts.secondary};
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -37,8 +38,12 @@ const Details = styled.div`
     -webkit-box-orient: vertical;
   }
 
+  h3 {
+    font-size: ${({ theme }) => theme.fontSizes.md};
+  }
+
   p {
-    font-size: 0.8em;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
     margin-top: 1%;
   }
 `;

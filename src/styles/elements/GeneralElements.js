@@ -8,7 +8,7 @@ const Button = styled.button`
     color: #000;
     cursor: pointer;
     display: inline-flex;
-    font-size: ${(props) => props.fontSize || "1rem"};
+    font-size: ${({ theme, fontSize }) => fontSize || theme.fontSizes.sm};
     justify-content: center;
     line-height: 1.5;
     padding: 0.4rem 0.8rem;
@@ -23,8 +23,12 @@ const Button = styled.button`
   }
 
   &:hover {
-    background-color: #b1672b;
+    background-color: ${({ theme }) => theme.colours.darkOrange};
     color: #fff;
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colours.darkerOrange};
   }
 `;
 
@@ -32,6 +36,7 @@ const Input = styled.input`
   width: 2rem;
   line-height: 2;
   text-align: center;
+  font-family: ${({ theme }) => theme.fonts.secondary};
 
   &:focus {
     outline: 1px solid;

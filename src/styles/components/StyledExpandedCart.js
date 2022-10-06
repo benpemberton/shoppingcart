@@ -2,14 +2,13 @@ import styled from "styled-components";
 
 const CartWrap = styled.div`
   z-index: 999999;
-  background-color: #2b94b1;
+  background-color: ${({ theme }) => theme.colours.darkBlue};
   position: fixed;
   right: 0;
   top: var(--headerHeight);
   height: calc(100vh - var(--headerHeight));
   width: min(30rem, 100%);
   padding: 1rem;
-  font-family: "Courier New", Courier, monospace;
 
   &.appear {
     transform: translateX(100%);
@@ -141,4 +140,13 @@ const CheckoutArea = styled.div`
   gap: 1rem;
 `;
 
-export { CartWrap, CartLayout, CloseCart, ListWrap, CartItemWrap, ItemName, UpdateArea, CheckoutArea }
+export {
+  CartWrap,
+  CartLayout,
+  CloseCart,
+  ListWrap,
+  CartItemWrap,
+  ItemName,
+  UpdateArea,
+  CheckoutArea,
+};

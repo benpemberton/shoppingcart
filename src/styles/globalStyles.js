@@ -1,11 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import './fonts.css'
+import "./fonts.css";
 
 const GlobalStyle = createGlobalStyle`
-@font-face {
-  font-family: 'Kanit', sans-serif;
-}
-
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -44,16 +40,13 @@ h3,
 h4,
 h5,
 h6,
-button,
-a {
-  font-family: Kanit;
-}
-
 p,
 span,
-input {
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 700;
+input,
+button,
+a {
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-weight: normal;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -68,19 +61,10 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.App {
-  position: relative;
-}
-
 ul,
 li,
 a {
   color: white;
-}
-
-p,
-h3 {
-  font-family: "Courier New", Courier, monospace;
 }
 
 a:link {

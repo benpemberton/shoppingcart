@@ -3,7 +3,6 @@ import styled from "styled-components";
 const PageWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: var(--headerHeight);
   height: auto;
   min-height: calc(100vh - var(--headerHeight));
   width: 100%;
@@ -42,10 +41,10 @@ const PageWrap = styled.div`
   }
 `;
 
-const CentreFlex = styled.div`
+const CenterFlex = styled.div`
   display: flex;
-  justify-content: centre;
-  align-items: centre;
+  justify-content: center;
+  align-items: center;
 `;
 
-export { PageWrap, CentreFlex };
+export { PageWrap, CenterFlex };

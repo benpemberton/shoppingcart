@@ -7,16 +7,15 @@ const IconWrap = styled.div`
   cursor: pointer;
 
   svg {
-    font-size: 1.2rem;
-    color: #e36d0e;
+    font-size: ${({ theme }) => theme.fontSizes.md};
   }
 
   &.open svg {
-    color: #e36d0e;
+    color: ${({ theme }) => theme.colours.darkOrange};
   }
 
   &.closed svg {
-    color: #fd933e;
+    color: ${({ theme }) => theme.colours.lightOrange};
   }
 `;
 
@@ -35,13 +34,12 @@ const NumWrap = styled.div`
   user-select: none;
 
   p {
-    margin-top: 0.15rem;
-    line-height: 0.8rem;
+    margin-top: 25%;
+    line-height: ${({ theme }) => theme.fontSizes.xs};
     color: #000;
-    font-size: 0.8rem;
-    font-family: "Courier New", Courier, monospace;
-    font-weight: 900;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-family: ${({ theme }) => theme.fonts.secondary};
   }
 `;
 
-export { IconWrap, NumWrap }
+export { IconWrap, NumWrap };
