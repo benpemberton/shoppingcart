@@ -13,7 +13,7 @@ const root = createRoot(container);
 root.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter basename="/shoppingcart">
         <GlobalStyle />
         <App />
       </BrowserRouter>
