@@ -1,8 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = () => {
   let isDevelopment = process.env.NODE_ENV === "development";
@@ -23,13 +23,13 @@ module.exports = () => {
         template: "./src/template.html",
       }),
       new MiniCssExtractPlugin(),
-      new BundleAnalyzerPlugin(),
+      // new BundleAnalyzerPlugin(),
     ],
     output: {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
+      assetModuleFilename: "images/[hash][ext][query]",
       clean: true,
-      publicPath: "/",
     },
     module: {
       rules: [
