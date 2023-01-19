@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = () => {
   let isDevelopment = process.env.NODE_ENV === "development";
@@ -21,10 +23,10 @@ module.exports = () => {
         template: "./src/template.html",
       }),
       new MiniCssExtractPlugin(),
-      // new Dotenv(),
+      new BundleAnalyzerPlugin(),
     ],
     output: {
-      filename: "main.js",
+      filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
       clean: true,
       publicPath: "/",
@@ -43,21 +45,7 @@ module.exports = () => {
                 },
             {
               loader: "css-loader",
-              // options: {
-              //   modules: {
-              //     localIdentName: isDevelopment
-              //       ? "[name]__[local]"
-              //       : "[hash:base64:5]",
-              //     exportLocalsConvention: "dashes",
-              //   },
-              // },
             },
-            // {
-            //   loader: "sass-loader",
-            //   options: {
-            //     sourceMap: isDevelopment,
-            //   },
-            // },
           ],
         },
         {
@@ -85,6 +73,11 @@ module.exports = () => {
           },
         },
       ],
+    },
+    optimization: {
+      splitChunks: {
+        chunks: "all",
+      },
     },
     resolve: {
       extensions: [".js", ".jsx", ".scss"],

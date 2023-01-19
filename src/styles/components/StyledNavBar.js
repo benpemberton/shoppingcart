@@ -30,6 +30,7 @@ const LogoWrap = styled.div`
 
 const RightHandLinks = styled.div`
   display: flex;
+  align-items: center;
   gap: 2rem;
 `;
 

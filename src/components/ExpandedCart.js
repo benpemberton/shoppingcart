@@ -1,11 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, setAmount, setShowCart } from "../redux/cartSlice";
+import TimesSVG from "./svgs/TimesSVG";
 import CartList from "./CartList";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CSSTransition } from "react-transition-group";
 import { Button } from "../styles/elements/GeneralElements";
-import { CartWrap, CartLayout, CloseCart, CheckoutArea } from '../styles/components/StyledExpandedCart'
+import {
+  CartWrap,
+  CartLayout,
+  CloseCart,
+  CheckoutArea,
+} from "../styles/components/StyledExpandedCart";
 
 const ExpandedCart = () => {
   const { cartItems, showCart } = useSelector((state) => state.cart);
@@ -44,11 +48,8 @@ const ExpandedCart = () => {
           timeout={{ enter: 600, exit: 200 }}
         >
           <CartLayout>
-            <CloseCart>
-              <FontAwesomeIcon
-                icon={faTimes}
-                onClick={() => dispatch(setShowCart(false))}
-              />
+            <CloseCart onClick={() => dispatch(setShowCart(false))}>
+              <TimesSVG />
             </CloseCart>
             <CartList cartItems={cartItems} updateCart={updateCart} />
             <CheckoutArea>

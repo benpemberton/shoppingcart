@@ -5,17 +5,20 @@ const IconWrap = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  height: 1.6rem;
+  width: 1.6rem;
 
   svg {
-    font-size: ${({ theme }) => theme.fontSizes.md};
+    height: 100%;
+    width: 100%;
   }
 
   &.open svg {
-    color: ${({ theme }) => theme.colours.darkOrange};
+    fill: ${({ theme }) => theme.colours.darkOrange};
   }
 
   &.closed svg {
-    color: ${({ theme }) => theme.colours.lightOrange};
+    fill: ${({ theme }) => theme.colours.lightOrange};
   }
 `;
 

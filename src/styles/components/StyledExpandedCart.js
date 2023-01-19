@@ -73,9 +73,13 @@ const CartLayout = styled.div`
 `;
 
 const CloseCart = styled.div`
+  height: 1.3rem;
+  width: 1.3rem;
+
   svg {
-    color: #fff;
-    font-size: 1.3rem;
+    fill: #fff;
+    height: 100%;
+    width: 100%;
     cursor: pointer;
   }
 `;
